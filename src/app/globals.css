@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #0ea5e9; /* sky-ish */
+  --secondary: #6366f1; /* indigo-ish */
+  --muted: #6c757d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-primary: #0ea5e9;
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-300: #7dd3fc;
+  --color-primary-500: #0ea5e9;
+  --color-primary-700: #0369a1;
+
+  --color-accent-50: #f5f3ff;
+  --color-accent-100: #ede9fe;
+  --color-accent-300: #a78bfa;
+  --color-accent-500: #6366f1;
+  --color-accent-700: #4338ca;
+
+  --color-neutral-50: #f8fafb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-500: #6c757d;
+  --color-neutral-700: #374151;
+}
+
+/* Still useful to expose raw RGB triplets for rgba() usages */
+:root {
+  /* Hex (for direct use) */
+  --color-primary: #0ea5e9; /* sky-ish */
+  --color-accent: #6366f1; /* indigo-ish */
+  --color-neutral: #6c757d; /* muted gray */
+
+  /* RGB triplets (for alpha / custom gradients) */
+  --color-primary-rgb: 14 165 233;
+  --color-accent-rgb: 99 102 241;
+  --color-neutral-rgb: 108 117 125;
+
+  /* additional tones */
+  --bg-1: linear-gradient(
+    180deg,
+    rgba(250, 250, 252, 1),
+    rgba(245, 247, 255, 1)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-onest);
+}
+
+/* Modern tokens */
+
+.header-glass {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-primary-rgb), 0.06),
+    rgba(var(--color-accent-rgb), 0.04)
+  );
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+}
+.card-glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.45)
+  );
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
+  border-radius: 16px;
+}
+.gradient-ring {
+  background: conic-gradient(
+    from 140deg at 50% 50%,
+    rgba(var(--color-primary-rgb), 0.9),
+    rgba(var(--color-accent-rgb), 0.9)
+  );
+  padding: 2px;
+  border-radius: 16px;
+}
+
+.shape-blob {
+  position: absolute;
+  filter: blur(48px);
+  opacity: 0.55;
+  transform: translateZ(0);
+}
+.diag-split {
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 60% 100%, 0 100%);
+} /* diagonal hero split */
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+
+.dropzone {
+  border: 2px dashed rgba(var(--color-neutral-rgb), 0.12);
+  padding: 1rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(250, 250, 252, 0.6)
+  );
+}
+.responsive-img {
+  width: 100%;
+  object-fit: cover;
+}
+.text-muted {
+  color: rgba(var(--color-neutral-rgb) / 1);
+}
+:focus {
+  outline: 3px solid rgba(var(--color-primary-rgb), 0.14);
+  outline-offset: 2px;
+}
+
+nav a {
+  position: relative;
+  text-decoration: none;
+}
+
+nav a::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 1rem;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+.first-level-dropdown .submenu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  pointer-events: none;
+}
+
+/* show the submenu only when hovering (or keyboard-focusing) that exact sub-item */
+.first-level-dropdown .sub-item:hover > .submenu,
+.first-level-dropdown .sub-item:focus-within > .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
