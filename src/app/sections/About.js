@@ -1,24 +1,23 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
-export default function Hero() {
+export default function About() {
+
   return (
-    <section className="h-auto lg:h-screen relative overflow-hidden py-10 px-4 md:px-10">
+    <section id="about" className="h-auto lg:h-screen relative overflow-hidden p-4 py-16 md:p-10 lg:p-20">
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* left content */}
           <div className="lg:col-span-6 z-10">
-            <div className="p-6 md:p-10 rounded-2xl card-glass lg:ml-12 shadow-soft-lg">
+            <div className="p-6 md:p-10 rounded-2xl card-glass shadow-soft-lg">
               <div className="uppercase text-sm font-semibold tracking-wide text-[rgb(var(--color-accent-rgb)/1)]">
                 Restyle Renovation
               </div>
               <h1 className="mt-4 text-3xl md:text-5xl font-extrabold leading-tight">
-                Design-forward exterior renovations that turn heads and last.
+                Calgary Renovation Experts From Kitchens to Exteriors
               </h1>
               <p className="mt-4 max-w-prose text-muted">
-                We combine architectural taste with industry-grade build
-                standards — roofing, siding, drainage and full exterior
-                transformations for homeowners who want results and beautiful
-                streetscapes.
+                Full-service home renovations across Calgary and nearby communities. We manage design, permits and licensed trades to deliver durable, code-compliant results that increase comfort and property value.
               </p>
 
               <div className="mt-6 flex gap-4">
@@ -30,7 +29,7 @@ export default function Hero() {
                 </a>
                 <a
                   href="#services"
-                  className="inline-flex items-center gap-3 px-4 md:px-6 py-3 rounded-xl border"
+                  className="inline-flex items-center gap-3 px-4 md:px-6 py-3 rounded-xl border bg-primaryDark text-white"
                 >
                   View Services
                 </a>
@@ -43,7 +42,7 @@ export default function Hero() {
                 <div>
                   <div className="font-semibold">12+ years</div>
                   <div className="text-sm text-muted">
-                    trusted in Calgary area
+                    serving Calgary & surrounding areas
                   </div>
                 </div>
               </div>
@@ -63,16 +62,16 @@ export default function Hero() {
             <div className="relative h-96 lg:h-[520px] rounded-3xl overflow-hidden shadow-soft-lg transform translate-y-6 lg:-translate-y-6">
               <img
                 src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1400&auto=format&fit=crop"
-                alt="exterior"
+                alt="home renovation in Calgary - kitchen, basement and exterior upgrades"
                 className="responsive-img"
               />
 
               <div className="absolute left-5 bottom-5 w-80 p-4 rounded-2xl gradient-ring float-slow">
                 <div className="bg-white p-3 rounded-xl">
                   <div className="text-xs text-muted">
-                    Premium exterior package
+                    Renovation packages
                   </div>
-                  <div className="font-bold">Roof + Siding + Gutters</div>
+                  <div className="font-bold">Kitchens • Basements • Exteriors</div>
                 </div>
               </div>
             </div>

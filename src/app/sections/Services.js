@@ -3,62 +3,110 @@
 import React, { useEffect, useRef, useState } from "react";
 
 /*
-  Redesigned Services component:
-  - Feature Banner (compact split-image + content)
-  - Decorative left accent column on wide screens
-  - Dense responsive grid below for all services (1-3 cols)
-  - Reveal animation + hover micro-interactions
+  Services component — updated copy for a Calgary-based renovation company.
+  - Featured service: Home Renovation
+  - Dense grid contains all service items from the project's service list
+  - Short, SEO-friendly descriptions mention Calgary where relevant
 */
 
 const SAMPLE = [
   {
     id: 1,
-    title: "Roofing & Repair",
-    tag: "Storm-Resistant",
-    desc: "Shingles, metal, and flat roofs — engineered and installed for long life.",
-    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop",
+    title: "Home Renovation",
+    tag: "Full-Service Remodels",
+    desc: "Complete home transformations from concept to finish carpentry across Calgary. We modernize outdated spaces with energy-efficient layouts and durable materials tailored to local lifestyles.",
+    img: "/images/services/home-renovation.webp",
   },
   {
     id: 2,
-    title: "Siding & Cladding",
-    tag: "Aesthetic + Thermal",
-    desc: "Fiber cement, vinyl, and metal cladding in curated palettes.",
-    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1400&auto=format&fit=crop",
+    title: "Basement Renovation",
+    tag: "Legal Suites & Living Space",
+    desc: "Convert underused basements into legal suites or entertainment spaces with moisture control and egress compliance. We maximize usable square footage while meeting Calgary's strict building codes.",
+    img: "/images/services/basement-renovation.webp",
   },
   {
     id: 3,
-    title: "Gutters & Drainage",
-    tag: "Foundation Safe",
-    desc: "Custom gutters, leaders and foundation drainage solutions.",
-    img: "/images/about-3.png",
+    title: "Framing",
+    tag: "Engineered Solutions",
+    desc: "Professional load-bearing modifications and structural framing with engineer-approved solutions. Ensures long-term stability and precise alignment for all finishing trades in Calgary renovations.",
+    img: "/images/services/framing.webp",
   },
   {
     id: 4,
-    title: "Exterior Painting",
-    tag: "Color + Protection",
-    desc: "Long-wearing, fade-resistant finishes with premium primers.",
-    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop",
+    title: "Kitchen Remodeling",
+    tag: "Custom Kitchens",
+    desc: "High-performance kitchen transformations blending custom cabinetry with smart layouts. We optimize workflow and home value through countertop installations and appliance integration.",
+    img: "/images/services/kitchen-remodeling.webp",
   },
   {
     id: 5,
-    title: "Soffits & Fascia",
-    tag: "Clean Finishes",
-    desc: "Architectural trims, ventilation, and durable trim systems.",
-    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop",
+    title: "Bathroom Remodeling",
+    tag: "Wet-Area Experts",
+    desc: "Water-tight bathroom renovations with modern fixtures and efficient layouts. Specializing in waterproofing systems and accessible designs that balance comfort with resale appeal.",
+    img: "/images/services/bath-remodeling.webp",
   },
   {
     id: 6,
-    title: "Window Flashing",
-    tag: "Watertight",
-    desc: "Precision flashings and trims to keep water out.",
-    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop",
+    title: "Flooring",
+    tag: "Durable Finishes",
+    desc: "Climate-suited flooring installations: hardwood, LVP, and tile with proper subfloor prep. We select materials for Calgary's conditions ensuring durability and seamless transitions.",
+    img: "/images/services/flooring.webp",
   },
   {
     id: 7,
-    title: "Inspections & Quotes",
-    tag: "Transparent Pricing",
-    desc: "Fast on-site inspections and detailed line-item quotes.",
-    img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop",
+    title: "Interior and Exterior Painting",
+    tag: "Color + Protection",
+    desc: "Premium painting with thorough surface preparation for lasting results. Enhances curb appeal and indoor comfort using low-VOC paints suited to Calgary's climate.",
+    img: "/images/services/painting.webp",
+  },
+  {
+    id: 8,
+    title: "Garage Development",
+    tag: "Workshops & Heated Spaces",
+    desc: "Transform garages into functional spaces with insulation and electrical upgrades. We create year-round studios, workshops, or home offices meeting Calgary's code requirements.",
+    img: "/images/services/garage.webp",
+  },
+  {
+    id: 9,
+    title: "Electrical",
+    tag: "Licensed Electricians",
+    desc: "Code-compliant electrical services from panel upgrades to smart-home integration. Our licensed electricians ensure safe installations supporting modern appliances and EV chargers.",
+    img: "/images/services/electrical.webp",
+  },
+  {
+    id: 10,
+    title: "Plumbing",
+    tag: "Rough-In & Fixture Work",
+    desc: "Reliable plumbing solutions including fixture replacement and repiping. Certified plumbers deliver water-efficient systems meeting Calgary's strict code requirements.",
+    img: "/images/services/plumbing.webp",
+  },
+  {
+    id: 11,
+    title: "Dry Wall",
+    tag: "Clean Finishes",
+    desc: "Professional drywall installation and finishing for crisp walls and ceilings. Creates perfect surfaces for paint and trim with soundproofing options available.",
+    img: "/images/services/dry-wall.webp",
+  },
+  {
+    id: 12,
+    title: "Mud & Taping",
+    tag: "Professional Finishers",
+    desc: "Flawless wall and ceiling finishes through expert taping and compound application. Prevents cracks and ensures seamless results ready for painting.",
+    img: "/images/services/mud-taping.webp",
+  },
+  {
+    id: 13,
+    title: "Wall Covering",
+    tag: "Feature Walls & Panels",
+    desc: "Precision wallpaper and panel installations with perfect pattern matching. Specializing in acoustic solutions and durable coverings for feature walls.",
+    img: "/images/services/wall-covering.webp",
+  },
+  {
+    id: 14,
+    title: "Ceiling",
+    tag: "Design & Repair",
+    desc: "Custom ceiling solutions from coffered details to acoustic treatments. Expert repair of water damage while matching existing textures and finishes.",
+    img: "/images/services/ceiling.webp",
   },
 ];
 
@@ -72,12 +120,15 @@ export default function Services({ services = SAMPLE }) {
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start justify-between mb-6 gap-6">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold capitalize">
-              Services - Design-driven & performance backed
+            <h2 className="text-4xl md:text-5xl font-bold capitalize">
+              <span className="bg-gradient-to-r from-primaryDark to-primary bg-clip-text text-transparent">
+                Services
+              </span>
+              - Design-driven Renovations in Calgary
             </h2>
             <p className="mt-2 text-sm text-muted max-w-prose">
-              Explore our service offerings — each one combines design, build
-              and reliability.
+              Serving Calgary and surrounding communities design, permits and
+              licensed trades for every renovation scale.
             </p>
           </div>
 
@@ -104,8 +155,8 @@ export default function Services({ services = SAMPLE }) {
                 <div className="relative h-64 md:h-[330px]">
                   <img
                     src={feature.img}
-                    alt={feature.title}
-                    className="object-cover"
+                    alt={`${feature.title} - renovation service in Calgary`}
+                    className="object-cover w-full h-full"
                   />
                   <div
                     className="absolute inset-0"
@@ -115,7 +166,7 @@ export default function Services({ services = SAMPLE }) {
                     }}
                   />
                   <div className="absolute left-6 bottom-6 p-3 rounded-lg bg-white/95">
-                    <div className="text-xs text-[rgb(var(--color-accent-rgb)/1)] font-semibold">
+                    <div className="text-sm text-[rgb(var(--color-accent-rgb)/1)] font-semibold">
                       {feature.title}
                     </div>
                     <div className="font-bold">{feature.tag}</div>
@@ -181,7 +232,11 @@ export default function Services({ services = SAMPLE }) {
                 aria-labelledby={`svc-${s.id}`}
               >
                 <div className="relative h-44 overflow-hidden">
-                  <img src={s.img} alt={s.title} className="responsive-img" />
+                  <img
+                    src={s.img}
+                    alt={`${s.title} in Calgary`}
+                    className="responsive-img object-cover w-full h-full"
+                  />
                   <div
                     className="absolute inset-0"
                     style={{
@@ -201,14 +256,23 @@ export default function Services({ services = SAMPLE }) {
                   <div className="text-sm text-[rgb(var(--color-accent-rgb)/1)] font-semibold">
                     {s.title}
                   </div>
-                  <h4 id={`svc-${s.id}`} className="font-bold mt-1 text-lg">
+                  <h4 id={`svc-${s.id}`} className="font-bold mt-1 text-xl">
                     {s.tag}
                   </h4>
                   <p className="mt-2 text-sm text-muted">{s.desc}</p>
 
-                  <div className="mt-4 flex items-center justify-between">
-                    <a href="#contact" className="text-sm font-semibold text-primary">
-                      Request Quote →
+                  <div className="mt-4 flex items-center gap-4">
+                    <a
+                      href="#contact"
+                      className="text-sm font-semibold text-white bg-primary p-2 rounded-lg"
+                    >
+                      Read More
+                    </a>
+                    <a
+                      href="/contact"
+                      className="text-sm font-semibold text-white  bg-primaryDark p-2 rounded-lg"
+                    >
+                      Request Quote
                     </a>
                   </div>
                 </div>

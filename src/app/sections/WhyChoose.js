@@ -15,42 +15,46 @@ export default function WhyChoose() {
     {
       icon: DollarSign,
       title: "Transparent Pricing",
-      description: "Real-time cost breakdowns with no hidden fees",
+      description:
+        "Itemized estimates and clear change-orders so you know exactly where your money goes.",
       color: "from-blue-500 to-cyan-600",
     },
     {
       icon: BadgeCheck,
-      title: "Certified Installers",
-      description: "Background-checked professionals with 5+ years experience",
+      title: "Licensed Installers",
+      description:
+        "Background-checked, trade-certified teams (electrical, plumbing, carpentry) who follow Calgary code.",
       color: "from-amber-500 to-orange-600",
     },
     {
       icon: Leaf,
-      title: "Eco Options",
-      description: "Sustainable materials with carbon-neutral delivery",
+      title: "Eco-Friendly Options",
+      description:
+        "Low-VOC paints, energy-efficient products and sustainable material choices for healthier homes.",
       color: "from-emerald-500 to-teal-600",
     },
     {
       icon: Clock,
-      title: "Quick Turnarounds",
-      description: "90% of projects completed 2 weeks ahead of schedule",
+      title: "Reliable Timelines",
+      description:
+        "Dedicated project managers, realistic schedules and proactive updates to keep your renovation on track.",
       color: "from-violet-500 to-fuchsia-600",
     },
   ];
 
   const stats = [
     {
-      value: "124+",
+      value: "350+",
       label: "Projects",
       icon: Sparkles,
       color: "text-amber-500",
     },
-    { value: "76+", label: "Clients", icon: Target, color: "text-cyan-500" },
-    { value: "12", label: "Years", icon: Lightbulb, color: "text-violet-500" },
+    { value: "220+", label: "Satisfied Clients", icon: Target, color: "text-cyan-500" },
+    { value: "12+", label: "Years Experince", icon: Lightbulb, color: "text-violet-500" },
   ];
 
   return (
-    <section id="why" className="relative  p-4 py-16 md:p-10 lg:p-20 overflow-hidden">
+    <section id="why" className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-16 w-64 h-64 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
@@ -65,16 +69,14 @@ export default function WhyChoose() {
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               Why Restyle{" "}
-              <span className="bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent">
-                redefines
-              </span>{" "}
-              excellence
+              <span className="bg-gradient-to-r from-primaryDark to-primary bg-clip-text text-transparent">
+                Is Calgary's Trusted Choice
+              </span>
             </h2>
 
             <p className="mt-6 text-lg text-gray-600 max-w-2xl">
-              A process built around clarity — from detailed estimates, premium
-              materials, to a dedicated project manager on every job. We don't
-              just meet expectations, we exceed them.
+              A renovation process built for Calgary homeowners detailed estimates, licensed trades,
+              permit coordination and a single project manager who keeps communication clear.
             </p>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -84,13 +86,12 @@ export default function WhyChoose() {
                   <div className="relative p-6 rounded-2xl border border-gray-100 bg-white">
                     <div
                       className={`w-14 h-14 rounded-xl mb-5 bg-gradient-to-br ${feature.color} flex items-center justify-center text-white shadow-lg`}
+                      aria-hidden
                     >
                       <feature.icon size={24} strokeWidth={2.2} />
                     </div>
                     <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               ))}
@@ -108,14 +109,12 @@ export default function WhyChoose() {
                 <div className="flex items-center mb-6">
                   <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 mr-3" />
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    Design + Build
+                    Design + Build - Done Right
                   </h3>
                 </div>
 
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  A single trusted team handles everything: design, material
-                  selection, permits and installation. Seamless integration from
-                  concept to completion.
+                  Single-point accountability: our team handles design, materials, permits and licensed installation so your project runs smoothly from concept to completion.
                 </p>
 
                 <div className="grid grid-cols-3 gap-6">
@@ -127,9 +126,7 @@ export default function WhyChoose() {
                         <div className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                           {stat.value}
                         </div>
-                        <div className="text-gray-600 font-medium mt-1">
-                          {stat.label}
-                        </div>
+                        <div className="text-gray-600 font-medium mt-1">{stat.label}</div>
                       </div>
                     </div>
                   ))}
@@ -140,7 +137,7 @@ export default function WhyChoose() {
             {/* Decorative badge */}
             <div className="absolute -bottom-6 right-2 lg:-right-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full shadow-lg z-20">
               <Shield className="inline mr-2 mb-0.5" size={16} />
-              100% Satisfaction Guarantee
+              Licensed • Insured • WCB Compliant
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import {
   Menu as MenuIcon,
   X,
 } from "lucide-react";
+import TopBar from "../sections/TopBar";
 
 const navItems = [
   { name: "HOME", href: "/", active: true },
@@ -20,25 +21,30 @@ const navItems = [
     dropdown: [
       { name: "Home Renovation", href: "/services/home-renovation" },
       { name: "Basement Renovation", href: "/services/basement-renovation" },
-      { name: "Basement Lemination", href: "/services/basement-lemaination" },
+      { name: "Framing", href: "/services/framing" },
       { name: "Kitchen Remodeling", href: "/services/kitchen-remodeling" },
       { name: "Bathroom Remodeling", href: "/services/bathroom-remodeling" },
       { name: "Flooring", href: "/services/flooring" },
-      { name: "Interior", href: "/services/interior" },
+      { name: "Interior and Exterior Painting", href: "/services/interior-and-exterior-painting" },
       { name: "Garage Development", href: "/services/garage-development" },
 
       {
         name: "Other Services",
         href: "#",
         dropdown: [
-          { name: "Framing", href: "/services/framing" },
-          { name: "Electrical", href: "/services/electrical" },
+          { name: "Electrical", href: "/services/framing" },
+          { name: "Plumbing", href: "/services/plumbing" },
+          { name: "Dry Wall", href: "/services/dry-wall" },
+          { name: "Mud & Taping", href: "/services/mud-taping" },
+          { name: "Wall Covering", href: "/services/wall-covering" },
+          { name: "Ceiling", href: "/services/ceiling" },
         ],
       },
     ],
   },
 
   { name: "Projects", href: "/projects" },
+  { name: "FAQs", href: "/faqs" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -89,8 +95,9 @@ const Header = () => {
     <header
       className={`sticky top-0 z-50 w-full bg-white transition-all duration-300 ${
         isSticky ? "shadow-md py-4" : "py-3"
-      }`}
+      } !py-0 `}
     >
+      <TopBar />
       <div className=" px-4 sm:px-8 md:px-12 lg:px-20">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex-shrink-0">
@@ -98,7 +105,7 @@ const Header = () => {
               src={"/images/logo.svg"}
               width={120}
               height={120}
-              className="w-40 h-32"
+              className="w-40 h-24"
             />
           </Link>
 
