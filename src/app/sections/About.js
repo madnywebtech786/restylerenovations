@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function About() {
 
   return (
-    <section id="about" className="h-auto lg:h-screen relative overflow-hidden p-4 py-16 md:p-10 lg:p-20">
+    <section id="about" className=" relative overflow-hidden p-4 py-16 md:p-10 lg:p-20">
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* left content */}

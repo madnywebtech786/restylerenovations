@@ -43,8 +43,10 @@ const Footer = () => {
               />
             </Link>
             <p className="text-white text-base leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis
-              aut illum rerum non, autem, alias voluptatum officia voluptates a.
+              Full-service home renovations across Calgary and nearby
+              communities. We manage design, permits and licensed trades to
+              deliver durable, code-compliant results that increase comfort and
+              property value.
             </p>
           </div>
 
@@ -101,9 +103,7 @@ const Footer = () => {
                   className="text-primary-red mt-1 flex-shrink-0"
                 />
                 <span>
-                  123 Calgary Trail SW,
-                  <br />
-                  Calgary, AB, Canada
+                  Calgary & Surrounding Areas
                 </span>
               </li>
             </ul>

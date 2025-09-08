@@ -167,9 +167,9 @@ export default function Services({ services = SAMPLE }) {
                   />
                   <div className="absolute left-6 bottom-6 p-3 rounded-lg bg-white/95">
                     <div className="text-sm text-[rgb(var(--color-accent-rgb)/1)] font-semibold">
-                      {feature.title}
+                      {feature.tag}
                     </div>
-                    <div className="font-bold">{feature.tag}</div>
+                    <div className="font-bold">{feature.title}</div>
                   </div>
                 </div>
               </div>
@@ -254,10 +254,10 @@ export default function Services({ services = SAMPLE }) {
 
                 <div className="p-4">
                   <div className="text-sm text-[rgb(var(--color-accent-rgb)/1)] font-semibold">
-                    {s.title}
+                    {s.tag}
                   </div>
                   <h4 id={`svc-${s.id}`} className="font-bold mt-1 text-xl">
-                    {s.tag}
+                    {s.title}
                   </h4>
                   <p className="mt-2 text-sm text-muted">{s.desc}</p>
 
