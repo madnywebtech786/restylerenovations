@@ -1,9 +1,9 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { Mail, Phone, MapPin, Send, Paperclip, X, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Paperclip, X, Check, User } from "lucide-react";
 
 export default function ContactForm() {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]); // changed from single file to multiple
   const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -14,6 +14,8 @@ export default function ContactForm() {
     message: "",
   });
   const fileRef = useRef();
+
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
   const validateForm = () => {
     let newErrors = {};
@@ -27,8 +29,12 @@ export default function ContactForm() {
     }
     if (!formData.message.trim()) newErrors.message = "Message is required";
 
-    if (file && file.size > 10 * 1024 * 1024) {
-      newErrors.file = "File size must be less than 10MB";
+    // check all files
+    for (const f of files) {
+      if (f && f.size > MAX_FILE_SIZE) {
+        newErrors.file = "Each file must be less than 10MB";
+        break;
+      }
     }
 
     setErrors(newErrors);
@@ -37,28 +43,41 @@ export default function ContactForm() {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    const f = e.dataTransfer.files?.[0];
-    if (f) {
-      if (f.size > 10 * 1024 * 1024) {
-        setErrors({ file: "File size must be less than 10MB" });
-      } else {
-        setFile(f);
-        setErrors((prev) => ({ ...prev, file: null }));
+    const dropped = Array.from(e.dataTransfer.files || []);
+    if (!dropped.length) return;
+
+    // validate and add
+    for (const f of dropped) {
+      if (f.size > MAX_FILE_SIZE) {
+        setErrors((prev) => ({ ...prev, file: "File size must be less than 10MB" }));
+        return;
       }
     }
+
+    setFiles((prev) => [...prev, ...dropped]);
+    setErrors((prev) => ({ ...prev, file: null }));
   };
 
   const handleFile = (e) => {
-    const f = e.target.files?.[0];
-    if (f) {
-      if (f.size > 10 * 1024 * 1024) {
-        setErrors({ file: "File size must be less than 10MB" });
-        setFile(null);
-      } else {
-        setFile(f);
-        setErrors((prev) => ({ ...prev, file: null }));
+    const picked = Array.from(e.target.files || []);
+    if (!picked.length) return;
+
+    for (const f of picked) {
+      if (f.size > MAX_FILE_SIZE) {
+        setErrors((prev) => ({ ...prev, file: "File size must be less than 10MB" }));
+        return;
       }
     }
+
+    setFiles((prev) => [...prev, ...picked]);
+    setErrors((prev) => ({ ...prev, file: null }));
+    // reset input so same file can be selected again if needed
+    if (fileRef.current) fileRef.current.value = "";
+  };
+
+  const removeFile = (index) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+    setErrors((prev) => ({ ...prev, file: null }));
   };
 
   const handleSubmit = async (e) => {
@@ -71,20 +90,54 @@ export default function ContactForm() {
       Object.entries(formData).forEach(([key, value]) => {
         formPayload.append(key, value);
       });
-      if (file) {
-        formPayload.append("file", file);
-      }
+
+      // append all selected files (two keys for compatibility)
+      files.forEach((f) => {
+        formPayload.append("file", f); // original key used in your submission
+        formPayload.append("attachments", f); // also add plural key
+      });
 
       const res = await fetch("/api/contact", {
         method: "POST",
         body: formPayload,
       });
 
-      if (!res.ok) throw new Error("Failed to send message");
+      // try parse json body for errors or messages
+      const contentType = res.headers.get("content-type") || "";
+      let body = null;
+      if (contentType.includes("application/json")) {
+        try {
+          body = await res.json();
+        } catch (err) {
+          body = null;
+        }
+      } else {
+        // non-json response
+        body = null;
+      }
 
+      if (!res.ok) {
+        // if server returned field errors object, merge into errors state
+        if (body && typeof body === "object") {
+          if (body.errors && typeof body.errors === "object") {
+            setErrors((prev) => ({ ...prev, ...body.errors }));
+          } else if (body.error) {
+            setErrors((prev) => ({ ...prev, submit: body.error }));
+          } else {
+            setErrors((prev) => ({ ...prev, submit: "Failed to send message" }));
+          }
+        } else {
+          setErrors((prev) => ({ ...prev, submit: "Failed to send message" }));
+        }
+        setSending(false);
+        return;
+      }
+
+      // success
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
-      setFile(null);
+      setFiles([]);
+      setErrors({});
       setTimeout(() => setSubmitted(false), 3000);
     } catch (err) {
       console.error(err);
@@ -170,19 +223,17 @@ export default function ContactForm() {
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder=" "
+                      placeholder="Full Name"
                       className={`pl-10 w-full p-3 rounded-lg border ${
                         errors.name ? "border-red-500" : "border-gray-200"
                       } focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer`}
                     />
-                    <label className="absolute left-10 -top-2.5 bg-white px-1 text-xs font-medium text-cyan-600 transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base">
-                      Full Name
-                    </label>
+
                     {errors.name && (
                       <p className="text-red-500 text-xs mt-1">{errors.name}</p>
                     )}
@@ -194,14 +245,12 @@ export default function ContactForm() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder=" "
+                      placeholder="Phone"
                       className={`pl-10 w-full p-3 rounded-lg border ${
                         errors.phone ? "border-red-500" : "border-gray-200"
                       } focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer`}
                     />
-                    <label className="absolute left-10 -top-2.5 bg-white px-1 text-xs font-medium text-cyan-600 transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base">
-                      Phone
-                    </label>
+
                     {errors.phone && (
                       <p className="text-red-500 text-xs mt-1">
                         {errors.phone}
@@ -217,14 +266,12 @@ export default function ContactForm() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder=" "
+                    placeholder="Email"
                     className={`pl-10 w-full p-3 rounded-lg border ${
                       errors.email ? "border-red-500" : "border-gray-200"
                     } focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer`}
                   />
-                  <label className="absolute left-10 -top-2.5 bg-white px-1 text-xs font-medium text-cyan-600 transition-all peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base">
-                    Email Address
-                  </label>
+
                   {errors.email && (
                     <p className="text-red-500 text-xs mt-1">{errors.email}</p>
                   )}
@@ -236,14 +283,12 @@ export default function ContactForm() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder=" "
+                    placeholder="Message"
                     className={`w-full p-4 rounded-lg border ${
                       errors.message ? "border-red-500" : "border-gray-200"
                     } focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer pt-4`}
                   ></textarea>
-                  <label className="absolute left-3 top-3.5 text-gray-500 peer-placeholder-shown:opacity-100 peer-focus:opacity-0 transition-opacity">
-                    How can we help you?
-                  </label>
+
                   {errors.message && (
                     <p className="text-red-500 text-xs mt-1">
                       {errors.message}
@@ -254,60 +299,88 @@ export default function ContactForm() {
                 {/* File Upload */}
                 <div className="mb-6">
                   <div
+                    onClick={() => fileRef.current && fileRef.current.click()}
                     onDrop={handleDrop}
                     onDragOver={(e) => e.preventDefault()}
-                    className={`relative rounded-xl border-2 border-dashed p-5 ${
-                      file
+                    className={`relative rounded-xl border-2 border-dashed p-5 cursor-pointer ${
+                      files.length
                         ? "border-cyan-200 bg-cyan-50"
                         : "border-gray-200 hover:border-cyan-300 hover:bg-gray-50"
                     }`}
                   >
-                    {file ? (
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <Paperclip className="w-5 h-5 text-cyan-500 mr-2" />
-                          <span className="text-sm text-gray-700 truncate max-w-xs">
-                            {file.name}
+                    <div className="text-center py-2">
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center mb-3">
+                          <Paperclip className="w-5 h-5 text-cyan-600" />
+                        </div>
+                        <p className="text-gray-600 text-sm">
+                          <span className="font-medium text-cyan-600">
+                            Click to upload
                           </span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setFile(null)}
-                          className="p-1 rounded-full hover:bg-gray-200"
-                        >
-                          <X className="w-4 h-4 text-gray-500" />
-                        </button>
+                          or drag and drop
+                        </p>
+                        <p className="text-gray-400 text-xs mt-1">
+                          SVG, PNG, JPG , PDF up to 10MB
+                        </p>
                       </div>
-                    ) : (
-                      <div className="text-center py-2">
-                        <div className="flex flex-col items-center justify-center">
-                          <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center mb-3">
-                            <Paperclip className="w-5 h-5 text-cyan-600" />
-                          </div>
-                          <p className="text-gray-600 text-sm">
-                            <span className="font-medium text-cyan-600">
-                              Click to upload
-                            </span>
-                            or drag and drop
-                          </p>
-                          <p className="text-gray-400 text-xs mt-1">
-                            SVG, PNG, JPG , PDF up to 10MB
-                          </p>
-                        </div>
-                      </div>
-                    )}
+                    </div>
                     <input
                       ref={fileRef}
                       type="file"
                       onChange={handleFile}
                       className="hidden"
                       accept="image/*,application/pdf"
+                      multiple
                     />
                   </div>
                   {errors.file && (
                     <p className="text-red-500 text-xs mt-2">{errors.file}</p>
                   )}
                 </div>
+
+                {/* Show selected files BELOW the file input */}
+                {files.length > 0 && (
+                  <div className="mb-6 space-y-2">
+                    {files.map((f, idx) => (
+                      <div
+                        key={`${f.name}-${f.size}-${idx}`}
+                        className="flex items-center justify-between bg-white/5 rounded-md p-3 border border-white/6"
+                      >
+                        <div className="flex items-center gap-3">
+                          {f.type.startsWith("image/") ? (
+                            <img
+                              src={URL.createObjectURL(f)}
+                              alt={f.name}
+                              className="w-12 h-12 object-cover rounded-md"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 flex items-center justify-center rounded-md bg-white/6 text-xs">
+                              {f.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          )}
+                          <div className="min-w-0">
+                            <div className="text-sm truncate max-w-xs">{f.name}</div>
+                            <div className="text-xs text-muted-foreground">
+                              {(f.size / 1024 / 1024).toFixed(2)} MB
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation(); // prevent opening file picker
+                              removeFile(idx);
+                            }}
+                            className="p-1 rounded-full hover:bg-gray-200"
+                          >
+                            <X className="w-4 h-4 text-gray-500" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {errors.submit && (
                   <p className="text-red-500 text-sm mb-3">{errors.submit}</p>

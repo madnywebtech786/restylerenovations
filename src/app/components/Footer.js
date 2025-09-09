@@ -21,7 +21,7 @@ const Footer = () => {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Menu", href: "/menu" },
+    { name: "FAQs", href: "/faqs" },
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -91,10 +91,10 @@ const Footer = () => {
                   className="text-primary-red mt-1 flex-shrink-0"
                 />
                 <a
-                  href="mailto:restylerenovation@gmail.com"
+                  href="mailto:info@restylerenovation.ca"
                   className="hover:text-primary-red transition-colors"
                 >
-                  restylerenovation@gmail.com
+                  info@restylerenovation.ca
                 </a>
               </li>
               <li className="flex items-start space-x-3">

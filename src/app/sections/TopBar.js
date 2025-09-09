@@ -8,9 +8,9 @@ export default function TopBar() {
       <div className="w-full lg:w-2/3 flex justify-between md:justify-start md:gap-5 items-center">
         <div className="flex gap-2 items-center">
           <Send size={20} className="text-white" />
-          <Link href={"mailto:restylerenovation@gmail.com"}>
+          <Link href={"mailto:info@restylerenovation.ca"}>
             <p className="text-xs lg:text-sm">
-              restylerenovation@gmail.com
+              info@restylerenovation.ca
             </p>
           </Link>
         </div>
