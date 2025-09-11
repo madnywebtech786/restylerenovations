@@ -72,7 +72,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden"
+      className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden dark:bg-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -186,7 +186,7 @@ export default function Testimonials() {
               <div className="flex items-center mb-4">
                 <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 mr-3" />
 
-                <h2 className="text-4xl md:text-5xl font-bold">
+                <h2 className="text-4xl md:text-5xl font-bold dark:text-black">
                   Real{" "}
                   <span className="bg-gradient-to-r from-primaryDark to-primary bg-clip-text text-transparent">
                     Impact

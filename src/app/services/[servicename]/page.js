@@ -235,7 +235,7 @@ export default async function ServicePage({ params }) {
     <div>
       <Breadcrumb name={servicename} />
 
-      <div className="p-4 lg:p-20 lg:pb-0">
+      <div className="p-4 lg:p-20 lg:pb-0 dark:bg-white">
         <div className="relative mb-20 rounded-2xl shadow-2xl bg-white flex flex-col md:flex-row gap-0 lg:gap-20 overflow-hidden">
           {/* Service Number */}
           <span className="absolute top-1/5 lg:top-0 -left-12 text-[220px] font-bold text-primary opacity-15">
@@ -244,13 +244,13 @@ export default async function ServicePage({ params }) {
 
           {/* Content Section */}
           <div className="flex-1 p-6 lg:p-10 lg:py-32">
-            <h2 className="text-4xl font-bold mb-4">{service.name}</h2>
+            <h2 className="text-4xl font-bold mb-4 dark:text-black">{service.name}</h2>
             <p className="text-gray-600 text-sm mb-6">{service.desc}</p>
 
             {/* Key Features List */}
             <ul className="space-y-3 mb-6">
               {service.features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-2 text-sm">
+                <li key={index} className="flex items-center gap-2 text-sm dark:text-black">
                   <CircleCheck size={16} className="text-primary" />
                   {feature}
                 </li>

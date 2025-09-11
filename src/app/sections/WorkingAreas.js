@@ -21,7 +21,7 @@ export default function WorkingAreas() {
     { name: "Okotoks", src: "/images/cities/okotoks.jpg" },
   ];
   return (
-    <div className="p-4 py-8 md:p-8 lg:p-12 2xl:p-20">
+    <div className="p-4 py-8 md:p-8 lg:p-12 2xl:p-20 dark:bg-white">
       <h2 className="text-4xl md:text-5xl font-bold leading-tight text-center">
         Our{" "}
         <span className="bg-gradient-to-r from-primaryDark to-primary bg-clip-text text-transparent">

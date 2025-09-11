@@ -115,7 +115,7 @@ export default function Services({ services = SAMPLE }) {
   const [feature, ...rest] = services;
 
   return (
-    <section id="services" className="relative  p-4 py-16 md:p-10 lg:p-20">
+    <section id="services" className="relative  p-4 py-16 md:p-10 lg:p-20 dark:bg-white">
       <div className={`transition-all duration-700 opacity-100 `}>
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start justify-between mb-6 gap-6">

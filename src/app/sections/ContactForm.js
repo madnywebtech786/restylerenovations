@@ -156,7 +156,7 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden"
+      className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden dark:bg-white"
     >
       <div className="relative z-10 grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-5 relative">

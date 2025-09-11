@@ -54,7 +54,7 @@ export default function WhyChoose() {
   ];
 
   return (
-    <section id="why" className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden">
+    <section id="why" className="relative p-4 py-16 md:p-10 lg:p-20 overflow-hidden dark:bg-white">
       {/* Decorative background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-16 w-64 h-64 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
@@ -67,7 +67,7 @@ export default function WhyChoose() {
           <div className="relative">
             <div className="absolute -top-6 -left-6 w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 opacity-10" />
 
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight dark:text-black">
               Why Restyle{" "}
               <span className="bg-gradient-to-r from-primaryDark to-primary bg-clip-text text-transparent">
                 Is Calgary's Trusted Choice
@@ -90,7 +90,7 @@ export default function WhyChoose() {
                     >
                       <feature.icon size={24} strokeWidth={2.2} />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                    <h3 className="text-xl font-bold mb-2 dark:text-black">{feature.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                   </div>
                 </div>

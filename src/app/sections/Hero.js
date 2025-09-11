@@ -42,8 +42,8 @@ export default function Hero() {
                     modernize your home.
                   </p>
                 </div>
-                <Link href={"tel:+14033614968"}>
-                  <button className="bg-white rounded-full p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
+                <Link className="w-max" href={"tel:+14033614968"}>
+                  <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Call Today 403-361-4968
                   </button>
                 </Link>
@@ -67,8 +67,8 @@ export default function Hero() {
                     that boost function and value.
                   </p>
                 </div>
-                <Link href={"/projects"}>
-                  <button className="bg-white rounded-full p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
+                <Link className="w-max" href={"/projects"}>
+                  <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Explore Our Projects
                   </button>
                 </Link>
@@ -92,8 +92,8 @@ export default function Hero() {
                     code-compliant finishes.
                   </p>
                 </div>
-                <Link href={"tel:+14033614968"}>
-                  <button className="bg-white rounded-full p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
+                <Link className="w-max" href={"tel:+14033614968"}>
+                  <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Call Us Now
                   </button>
                 </Link>
@@ -117,8 +117,8 @@ export default function Hero() {
                     results in Calgary.
                   </p>
                 </div>
-                <Link href={"tel:+14033614968"}>
-                  <button className="bg-white rounded-full p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
+                <Link className="w-max" href={"tel:+14033614968"}>
+                  <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Start Your Design Journey
                   </button>
                 </Link>

@@ -47,14 +47,14 @@ const faqsData = [
   }
 ];
   return (
-    <div className="py-16 px-4 sm:px-8 md:px-12 lg:px-20">
+    <div className="py-16 px-4 sm:px-8 md:px-12 lg:px-20 dark:bg-white">
       <div className="w-full flex flex-col lg:flex-row  gap-5">
         <div className="w-full lg:w-[60%] flex flex-col px-3">
           <div className="w-24 bg-primary-gradient rounded-lg flex py-1 px-2 gap-2 items-center">
             <Aperture size={20} color="white" />
-            <span className="rounded-lg text-white font-semibold">FAQs</span>
+            <span className="rounded-lg text-white font-semibold dark:text-primary">FAQs</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 dark:text-black">
             Frequently Asked Questions
           </h2>
           <p className="text-sm text-slate-500 mt-4">
@@ -73,7 +73,7 @@ const faqsData = [
                     setOpenIndex(openIndex === index ? null : index)
                   }
                 >
-                  <h2 className="text-sm font-semibold">{faq.question}</h2>
+                  <h2 className="text-sm font-semibold dark:text-black">{faq.question}</h2>
                   <svg
                     width="18"
                     height="18"
@@ -112,12 +112,12 @@ const faqsData = [
               350+
             </div>
             <div className="w-full py-10 lg:w-full flex justify-center items-center font-semibold border border-gray-300 rounded-2xl">
-              <p className="text-center text-xl lg:text-xl">Projects</p>
+              <p className="text-center text-xl lg:text-xl dark:text-black">Projects</p>
             </div>
           </div>
           <div className="flex flex-col-reverse lg:flex-row gap-4 my-4">
             <div className="w-full py-10 lg:w-full flex justify-center items-center font-semibold border border-gray-300 rounded-2xl">
-              <p className="text-center text-xl lg:text-xl">
+              <p className="text-center text-xl lg:text-xl dark:text-black">
                 Satisfied Clients
               </p>
             </div>
@@ -131,7 +131,7 @@ const faqsData = [
               12+
             </div>
             <div className="w-full py-10 lg:w-full flex justify-center items-center font-semibold border border-gray-300 rounded-2xl">
-              <p className="text-center text-xl lg:text-xl">
+              <p className="text-center text-xl lg:text-xl dark:text-black">
                 Years Experince
               </p>
             </div>

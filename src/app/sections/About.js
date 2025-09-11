@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function About() {
 
   return (
-    <section id="about" className=" relative overflow-hidden p-4 py-16 md:p-10 lg:p-20">
+    <section id="about" className=" relative overflow-hidden p-4 py-16 md:p-10 lg:p-20 dark:bg-white">
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* left content */}
@@ -13,7 +13,7 @@ export default function About() {
               <div className="uppercase text-sm font-semibold tracking-wide text-[rgb(var(--color-accent-rgb)/1)]">
                 Restyle Renovation
               </div>
-              <h1 className="mt-4 text-3xl md:text-5xl font-extrabold leading-tight">
+              <h1 className="mt-4 text-3xl md:text-5xl font-extrabold leading-tight dark:text-black">
                 Calgary Renovation Experts From Kitchens to Exteriors
               </h1>
               <p className="mt-4 max-w-prose text-muted">
@@ -40,7 +40,7 @@ export default function About() {
                   🏆
                 </div>
                 <div>
-                  <div className="font-semibold">12+ years</div>
+                  <div className="font-semibold dark:text-black">12+ years</div>
                   <div className="text-sm text-muted">
                     serving Calgary & surrounding areas
                   </div>

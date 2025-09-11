@@ -174,7 +174,7 @@ export default function Page() {
   return (
     <>
       <Breadcrumb name={"Our Projects"} />
-      <div className="p-6 md:p-8 lg:p-12 2xl:p-20">
+      <div className="p-6 md:p-8 lg:p-12 2xl:p-20 dark:bg-white">
         {servicesToRender.length === 0 ? (
           <div className="text-center py-20">
             <h2 className="text-3xl font-semibold mb-4">No projects found</h2>
