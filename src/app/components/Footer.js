@@ -12,10 +12,14 @@ import {
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <Facebook size={16} />, href: "#" },
-    { icon: <Twitter size={16} />, href: "#" },
-    { icon: <Instagram size={16} />, href: "#" },
-    { icon: <Linkedin size={16} />, href: "#" },
+    {
+      icon: <Facebook size={16} />,
+      href: "https://www.facebook.com/profile.php?id=61580180045432",
+    },
+    {
+      icon: <Instagram size={16} />,
+      href: "https://www.instagram.com/restyle.renovationyyc/?hl=en",
+    },
   ];
 
   const quickLinks = [
@@ -102,9 +106,7 @@ const Footer = () => {
                   size={20}
                   className="text-primary-red mt-1 flex-shrink-0"
                 />
-                <span>
-                  Calgary & Surrounding Areas
-                </span>
+                <span>Calgary & Surrounding Areas</span>
               </li>
             </ul>
           </div>
@@ -122,6 +124,14 @@ const Footer = () => {
                   {link.icon}
                 </Link>
               ))}
+              <Link href={"https://www.tiktok.com/@restylerenovationyyc"}>
+                <Image
+                  src={"/images/icons/tiktok.png"}
+                  width={40}
+                  height={40}
+                  className="border-2 border-white rounded-full p-2"
+                />
+              </Link>
             </div>
           </div>
         </div>

@@ -9,9 +9,7 @@ export default function TopBar() {
         <div className="flex gap-2 items-center">
           <Send size={20} className="text-white" />
           <Link href={"mailto:info@restylerenovation.ca"}>
-            <p className="text-xs lg:text-sm">
-              info@restylerenovation.ca
-            </p>
+            <p className="text-xs lg:text-sm">info@restylerenovation.ca</p>
           </Link>
         </div>
         <div className="flex gap-2 items-center">
@@ -23,9 +21,16 @@ export default function TopBar() {
       </div>
       <div className="w-1/3 hidden md:flex justify-end">
         <div className="flex items-center space-x-4">
-          <Facebook size={20} className="text-white" />
+          <Link href={"https://www.facebook.com/profile.php?id=61580180045432"}>
+            <Facebook size={20} className="text-white" />
+          </Link>
 
-          <Instagram size={20} className="text-white" />
+          <Link href={"https://www.instagram.com/restyle.renovationyyc/?hl=en"}>
+            <Instagram size={20} className="text-white" />
+          </Link>
+          <Link href={"https://www.tiktok.com/@restylerenovationyyc"}>
+            <Image src={"/images/icons/tiktok.png"} width={20} height={20} />
+          </Link>
         </div>
       </div>
     </div>
