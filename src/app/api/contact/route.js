@@ -166,7 +166,7 @@ export async function POST(request) {
           <div style="color:#777">Serving Calgary & surrounding communities</div>
         </div>
         <div style="text-align:right">
-          <div style="font-weight:700;color:${secondary}">Phone: (403) 361-4968</div>
+          <div style="font-weight:700;color:${secondary}">Phone: (403) 401-1636</div>
           <div style="color:#777">Email: restlyerenovation@gmail.com</div>
         </div>
       </div>

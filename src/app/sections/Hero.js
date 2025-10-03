@@ -42,9 +42,9 @@ export default function Hero() {
                     modernize your home.
                   </p>
                 </div>
-                <Link className="w-max" href={"tel:+14033614968"}>
+                <Link className="w-max" href={"tel:+14034011636"}>
                   <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
-                    Call Today 403-361-4968
+                    Call Today 403-401-1636
                   </button>
                 </Link>
               </div>
@@ -92,7 +92,7 @@ export default function Hero() {
                     code-compliant finishes.
                   </p>
                 </div>
-                <Link className="w-max" href={"tel:+14033614968"}>
+                <Link className="w-max" href={"tel:+14034011636"}>
                   <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Call Us Now
                   </button>
@@ -117,7 +117,7 @@ export default function Hero() {
                     results in Calgary.
                   </p>
                 </div>
-                <Link className="w-max" href={"tel:+14033614968"}>
+                <Link className="w-max" href={"tel:+14034011636"}>
                   <button className="bg-white rounded-full cursor-pointer p-1 lg:p-3 px-4 lg:px-12 w-max text-xxs lg:text-sm font-semibold uppercase">
                     Start Your Design Journey
                   </button>
